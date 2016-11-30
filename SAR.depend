@@ -1,4 +1,8 @@
 # depslib dependency file v1.0
-1480442191 source:/home/felipe/Documents/git/T1_ORI/SAR/main.cpp
+1480524102 source:/home/felipe/Documents/git/T1_ORI/SAR/main.cpp
 	<iostream>
+	<fstream>
+	<string.h>
+	<sys/stat.h>
+	<dirent.h>
 
