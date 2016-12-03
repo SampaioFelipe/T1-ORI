@@ -13,6 +13,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
+					<Add directory="include" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -22,6 +23,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -32,7 +34,14 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="include/Arquivo.h" />
+		<Unit filename="include/Diretorio.h" />
+		<Unit filename="include/Header.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/Arquivo.cpp" />
+		<Unit filename="src/Diretorio.cpp" />
+		<Unit filename="src/Header.cpp" />
+		<Unit filename="src/leDir.cpp" />
 		<Extensions>
 			<code_completion />
 			<debugger />
