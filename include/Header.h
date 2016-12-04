@@ -15,6 +15,7 @@ public:
     void save(ofstream& arquivo);
     void load(ifstream& arquivo);
     int getStatus();
+    string getExtensao();
     void changeStatus();
 };
 

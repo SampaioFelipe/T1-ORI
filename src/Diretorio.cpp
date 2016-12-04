@@ -1,29 +1,34 @@
 #include "Diretorio.h"
-#include <iostream>
-#include <string.h>
 
-using namespace std;
 Diretorio::Diretorio()
 {
     this->nFilhos = -1;
 }
 void Diretorio::save(ofstream& file)
 {
-    char tipo = 'D';
-    file.write(&tipo, sizeof(tipo));
-    file.write(reinterpret_cast<const char *>(&this->tamNome), sizeof(this->tamNome));
-    file.write(this->nome, this->tamNome);
-    file.write(reinterpret_cast<const char *>(&this->nFilhos), sizeof(this->nFilhos));
+    if(this->nFilhos >= 0)
+    {
+        char tipo = 'D';
+        cout<<tipo<<" "<<sizeof(tipo)<<endl;
+        file.write(&tipo, sizeof(tipo));
+        cout<<tamNome<<" "<<sizeof(tamNome)<<endl;
+        file.write(reinterpret_cast<const char *>(&this->tamNome), sizeof(this->tamNome));
+        cout<<nome<<" "<<sizeof(nome)<<endl;
+        file.write(this->nome, this->tamNome);
+        cout<<nFilhos<<" "<<sizeof(nFilhos)<<endl;
+        file.write(reinterpret_cast<const char *>(&this->nFilhos), sizeof(this->nFilhos));
+    }
+
 }
 void Diretorio::load(ifstream& file)
 {
     file.read(reinterpret_cast<char *>(&this->tamNome), sizeof(this->tamNome));
-    cout<<tamNome<<endl;
+    //cout<<"TamNome "<<tamNome<<endl;
     this->nome = new char[this->tamNome];
     file.read(this->nome, this->tamNome);
-    cout<<nome<<endl;
+    //cout<<"Nome"<<nome<<endl;
     file.read(reinterpret_cast<char *>(&this->nFilhos), sizeof(this->nFilhos));
-    cout<<nFilhos<<endl;
+    //cout<<nFilhos<<endl;
 
 }
 
@@ -31,7 +36,7 @@ void Diretorio::setNome(string nome)
 {
     this->nome = new char[nome.size()];
     strcpy(this->nome, nome.c_str());
-    this->tamNome = nome.size();
+    this->tamNome = nome.size()+1;
     cout<<this->nome<<" "<<this->tamNome<<endl;
 }
 string Diretorio::getNome()

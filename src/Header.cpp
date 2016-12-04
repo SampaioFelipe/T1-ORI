@@ -1,6 +1,6 @@
 #include "Header.h"
 #include <iostream>
-Header::Header():extensao(".sar")
+Header::Header():extensao(".sar") //{'.','s','a','r'}
 {
     this->status = 1; // mudar
 
@@ -20,6 +20,10 @@ void Header::load(ifstream& arquivo)
 int Header::getStatus()
 {
     return this->status;
+}
+string Header::getExtensao()
+{
+    return string(this->extensao);
 }
 void Header::changeStatus()
 {

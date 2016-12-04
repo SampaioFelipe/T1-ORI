@@ -1,5 +1,41 @@
 # depslib dependency file v1.0
-1480728745 source:/home/felipe/Documents/git/T1_ORI/SAR/main.cpp
+1480820444 source:/home/felipe/Documents/git/T1_ORI/SAR/main.cpp
+	"sar.h"
+
+1480820898 source:/home/felipe/Documents/git/T1_ORI/SAR/src/Header.cpp
+	"Header.h"
+	<iostream>
+
+1480820861 /home/felipe/Documents/git/T1_ORI/SAR/include/Header.h
+	<fstream>
+	<dirent.h>
+
+1480823874 source:/home/felipe/Documents/git/T1_ORI/SAR/src/Diretorio.cpp
+	"Diretorio.h"
+
+1480823285 /home/felipe/Documents/git/T1_ORI/SAR/include/Diretorio.h
+	<fstream>
+	<dirent.h>
+	<iostream>
+	<string.h>
+
+1480823670 source:/home/felipe/Documents/git/T1_ORI/SAR/src/Arquivo.cpp
+	"Arquivo.h"
+
+1480823260 /home/felipe/Documents/git/T1_ORI/SAR/include/Arquivo.h
+	<fstream>
+	<dirent.h>
+	<iostream>
+	<string.h>
+
+1480705095 source:/home/felipe/Documents/git/T1_ORI/SAR/src/leDir.cpp
+	<iostream>
+	<string>
+	<stdio.h>
+	<sstream>
+	<vector>
+
+1480822894 /home/felipe/Documents/git/T1_ORI/SAR/include/sar.h
 	<iostream>
 	<fstream>
 	<string.h>
@@ -10,36 +46,6 @@
 	"Diretorio.h"
 	"Arquivo.h"
 
-1480719307 source:/home/felipe/Documents/git/T1_ORI/SAR/src/Header.cpp
-	"Header.h"
-	<iostream>
-
-1480690960 /home/felipe/Documents/git/T1_ORI/SAR/include/Header.h
-	<fstream>
-	<dirent.h>
-
-1480725988 source:/home/felipe/Documents/git/T1_ORI/SAR/src/Diretorio.cpp
-	"Diretorio.h"
-	<iostream>
-	<string.h>
-
-1480725182 /home/felipe/Documents/git/T1_ORI/SAR/include/Diretorio.h
-	<fstream>
-	<dirent.h>
-
-1480730613 source:/home/felipe/Documents/git/T1_ORI/SAR/src/Arquivo.cpp
-	"Arquivo.h"
-	<iostream>
-	<string.h>
-
-1480726083 /home/felipe/Documents/git/T1_ORI/SAR/include/Arquivo.h
-	<fstream>
-	<dirent.h>
-
-1480705095 source:/home/felipe/Documents/git/T1_ORI/SAR/src/leDir.cpp
-	<iostream>
-	<string>
-	<stdio.h>
-	<sstream>
-	<vector>
+1480823908 source:/home/felipe/Documents/git/T1_ORI/SAR/src/sar.cpp
+	"sar.h"
 

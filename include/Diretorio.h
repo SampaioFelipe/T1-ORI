@@ -3,6 +3,9 @@
 #include <fstream>
 #include <dirent.h>
 
+#include <iostream>
+#include <string.h>
+
 using namespace std;
 
 class Diretorio

@@ -1,7 +1,5 @@
 #include "Arquivo.h"
-#include <iostream>
-#include <string.h>
-using namespace std;
+
 Arquivo::Arquivo()
 {
     this->tamConteudo = 0;
@@ -23,13 +21,11 @@ void Arquivo::save(ofstream& fileDestino, ifstream& fileOrigem)
 
     while(!fileOrigem.eof())
     {
-        cout<<fileOrigem.tellg()<<endl;
         fileDestino.put(fileOrigem.get());
     }
 }
 void Arquivo::load(ifstream& file, string pathPai)
 {
-    cout<<"Load"<<endl;
     file.read(reinterpret_cast<char*>(&this->tamNome), sizeof(this->tamNome));
     cout<<this->tamNome<<endl;
     this->nome = new char[this->tamNome];
@@ -45,17 +41,34 @@ void Arquivo::load(ifstream& file, string pathPai)
 
     while(file.tellg() <= fim)
     {
-        cout<<file.tellg()<<endl;
         novoArquivo.put(file.get());
     }
 
     novoArquivo.close();
 }
 
+void Arquivo::loadInfo(ifstream& file)
+{
+    file.read(reinterpret_cast<char*>(&this->tamNome), sizeof(this->tamNome));
+    cout<<this->tamNome<<endl;
+    this->nome = new char[this->tamNome];
+    file.read(this->nome, this->tamNome);
+    cout<<this->nome<<endl;
+    file.read(reinterpret_cast<char*>(&this->tamConteudo), sizeof(this->tamConteudo));
+    cout<<this->tamConteudo<<endl;
+
+    file.seekg(file.tellg() + this->tamConteudo - 1, ios::beg); // ??
+}
+
 void Arquivo::setNome(string nome)
 {
     this->nome = new char[nome.size()];
     strcpy(this->nome, nome.c_str());
-    this->tamNome = nome.size();
+    this->tamNome = nome.size()+1;
     cout<<this->nome<<" "<<this->tamNome<<endl;
+}
+
+string Arquivo::getNome()
+{
+    return this->nome;
 }
