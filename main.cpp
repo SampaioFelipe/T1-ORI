@@ -1,3 +1,7 @@
+/*
+* Nome:
+*/
+
 #include "sar.h"
 
 int main(int argc, char* argv[])
@@ -7,7 +11,7 @@ int main(int argc, char* argv[])
     if(argc != 3)
     {
         info();
-        status = 3;
+        status = 4;
     }
     else
     {
@@ -21,7 +25,7 @@ int main(int argc, char* argv[])
         else
         {
             info();
-            status = 3;
+            status = 4;
         }
     }
     return status;

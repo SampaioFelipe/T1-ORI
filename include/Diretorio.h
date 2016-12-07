@@ -1,5 +1,6 @@
 #ifndef DIRETORIO_H
 #define DIRETORIO_H
+
 #include <fstream>
 #include <dirent.h>
 

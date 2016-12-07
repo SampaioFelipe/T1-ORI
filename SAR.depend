@@ -1,25 +1,25 @@
 # depslib dependency file v1.0
-1480820444 source:/home/felipe/Documents/git/T1_ORI/SAR/main.cpp
+1481141314 source:/home/felipe/Documents/git/T1_ORI/SAR/main.cpp
 	"sar.h"
 
-1480820898 source:/home/felipe/Documents/git/T1_ORI/SAR/src/Header.cpp
+1481131945 source:/home/felipe/Documents/git/T1_ORI/SAR/src/Header.cpp
 	"Header.h"
 	<iostream>
 
-1480820861 /home/felipe/Documents/git/T1_ORI/SAR/include/Header.h
+1481141296 /home/felipe/Documents/git/T1_ORI/SAR/include/Header.h
 	<fstream>
 	<dirent.h>
 
-1480823874 source:/home/felipe/Documents/git/T1_ORI/SAR/src/Diretorio.cpp
+1481139517 source:/home/felipe/Documents/git/T1_ORI/SAR/src/Diretorio.cpp
 	"Diretorio.h"
 
-1480823285 /home/felipe/Documents/git/T1_ORI/SAR/include/Diretorio.h
+1481131958 /home/felipe/Documents/git/T1_ORI/SAR/include/Diretorio.h
 	<fstream>
 	<dirent.h>
 	<iostream>
 	<string.h>
 
-1480823670 source:/home/felipe/Documents/git/T1_ORI/SAR/src/Arquivo.cpp
+1481135250 source:/home/felipe/Documents/git/T1_ORI/SAR/src/Arquivo.cpp
 	"Arquivo.h"
 
 1480823260 /home/felipe/Documents/git/T1_ORI/SAR/include/Arquivo.h
@@ -28,16 +28,17 @@
 	<iostream>
 	<string.h>
 
-1480705095 source:/home/felipe/Documents/git/T1_ORI/SAR/src/leDir.cpp
+1481058072 source:/home/felipe/Documents/git/T1_ORI/SAR/src/leDir.cpp
 	<iostream>
 	<string>
 	<stdio.h>
 	<sstream>
 	<vector>
 
-1480822894 /home/felipe/Documents/git/T1_ORI/SAR/include/sar.h
+1481132057 /home/felipe/Documents/git/T1_ORI/SAR/include/sar.h
 	<iostream>
 	<fstream>
+	<algorithm>
 	<string.h>
 	<vector>
 	<sys/stat.h>
@@ -46,6 +47,6 @@
 	"Diretorio.h"
 	"Arquivo.h"
 
-1480823908 source:/home/felipe/Documents/git/T1_ORI/SAR/src/sar.cpp
+1481141355 source:/home/felipe/Documents/git/T1_ORI/SAR/src/sar.cpp
 	"sar.h"
 

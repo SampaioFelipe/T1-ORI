@@ -1,8 +1,8 @@
 #include "Header.h"
 #include <iostream>
-Header::Header():extensao(".sar") //{'.','s','a','r'}
+Header::Header():extensao(".sar")
 {
-    this->status = 1; // mudar
+    this->status = 1;
 
 }
 void Header::save(ofstream& arquivo)

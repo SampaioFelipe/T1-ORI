@@ -4,6 +4,7 @@
 #include <iostream>
 #include <fstream>
 
+#include<algorithm>
 #include <string.h>
 #include <vector>
 
@@ -23,10 +24,8 @@ int extrair(char* nomeArquivo);
 int extraiRecursivo(ifstream& sarFile, string pathPai);
 
 int listar(char* nomeArquivo);
-void info();
-
-void listar();
 void listarRecursivo(ifstream&, int nivel);
 
+void info();
 
 #endif // SAR_H

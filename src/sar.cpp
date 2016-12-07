@@ -1,28 +1,68 @@
 #include "sar.h"
 
+vector<string> splitPath(string path, const char* delimitador)
+{
+    string nome, aux;
+    vector<string> splited;
+
+    aux = path.back();
+
+    while(aux.compare(delimitador) == 0)
+    {
+        path.pop_back();
+        aux = path.back();
+    }
+
+    while(!path.empty())
+    {
+        aux = path.back();
+        path.pop_back();
+
+        if(aux.compare(delimitador) == 0)
+        {
+            reverse(nome.begin(),nome.end());
+            splited.push_back(path);
+            splited.push_back(nome);
+            return splited;
+        }
+        else
+        {
+            nome.append(aux);
+        }
+    }
+
+    reverse(nome.begin(),nome.end());
+    splited.push_back(".");
+    splited.push_back(nome);
+
+    return splited;
+}
+
 int arquivar(char* dir)
 {
+    vector<string> dirPath = splitPath(dir,"/");
+    string nome = dirPath.back() + ".sar";
+
     ofstream newFile;
-    newFile.open("nome.sar", ios::binary|ios::trunc);
+    newFile.open(nome.c_str(), ios::binary|ios::trunc);
 
     Header head;
     head.save(newFile);
 
-    //dividir nome
-
-    arquivaRecursivo("x", dir, newFile);
+    int status = arquivaRecursivo(dirPath[0], dirPath[1], newFile);
 
     head.changeStatus();
     head.save(newFile);
+
     newFile.close();
 
-    return 0; // precisa retornar se teve sucesso ou não
+    return status; // precisa retornar se teve sucesso ou não
 }
 
 int arquivaRecursivo(string pai, string nomeDir, ofstream& file)
 {
     string dir;
-    if(pai=="x")
+    if(pai==".")
         dir = nomeDir;
     else
         dir = pai + "/" + nomeDir;
@@ -31,7 +71,6 @@ int arquivaRecursivo(string pai, string nomeDir, ofstream& file)
 
     if(ptrDir == NULL)
     {
-        cout<<"ERRO: Nao foi possivel abrir o diretorio"<<endl;
         return 1;
     }
 
@@ -48,15 +87,12 @@ int arquivaRecursivo(string pai, string nomeDir, ofstream& file)
     {
         if(ptrEnt == NULL)
         {
-            cout<<"ERRO ptrEnt"<<endl;
             return 1;
         }
 
 
         if(ptrEnt->d_type == DT_REG)
         {
-            cout<<"Nome: "<<ptrEnt->d_name<<" : ";
-            cout<<"Regular File"<<endl;
             contador++;
             nomeArquivos.push_back(string(ptrEnt->d_name));
         }
@@ -65,16 +101,11 @@ int arquivaRecursivo(string pai, string nomeDir, ofstream& file)
         {
             if(strcmp(ptrEnt->d_name, ".") != 0 && strcmp(ptrEnt->d_name, "..") != 0)
             {
-                cout<<"Nome: "<<ptrEnt->d_name<<" : ";
-                cout<<"Directory"<<endl;
                 contador++;
                 nomeDiretorios.push_back(string(ptrEnt->d_name));
             }
         }
     }
-
-    cout<<"Contador "<<contador<<endl;
-    cout<<"Fim Listagem"<<endl;
 
     dirAtual.setNome(nomeDir);
     dirAtual.setNFilhos(contador);
@@ -85,19 +116,14 @@ int arquivaRecursivo(string pai, string nomeDir, ofstream& file)
 
     while(!nomeArquivos.empty())
     {
-        cout<<"Salvando Arquivos"<<endl;
-
         nomeArquivo = nomeArquivos.back();
-        cout<<nomeArquivo<<" : ";
         path = dir + "/" + nomeArquivo;
-        cout<<path<<endl;
 
         ifstream readFile;
         readFile.open(path.c_str(), ios::binary);
 
         if(readFile.is_open())
         {
-            cout<<"Abriu"<<endl;
             Arquivo fileAtual;
             fileAtual.setNome(nomeArquivo);
             fileAtual.save(file, readFile);
@@ -108,13 +134,13 @@ int arquivaRecursivo(string pai, string nomeDir, ofstream& file)
 
     while(!nomeDiretorios.empty())
     {
-        cout<<"Salvando Diretorios"<<endl;
         arquivaRecursivo(dir, nomeDiretorios.back(), file);
         nomeDiretorios.pop_back();
     }
 
     closedir(ptrDir); // fecha o directory stream
 
+    return 0;
 }
 
 int extrair(char* nomeArquivo)
@@ -130,23 +156,17 @@ int extrair(char* nomeArquivo)
 
     if(head.getExtensao().compare(".sar") != 0 || head.getStatus() == 1)
     {
-        cout<<"Arquivo inconsistente."<<endl;
-        return 3;
+        return 2;
     }
 
     char tipoAtual;
     sarFile.read(&tipoAtual, sizeof(tipoAtual));
-    int dirStatus = mkdir("PastaTeste", S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
 
-    if (dirStatus == -1)
-    {
-        cout<<"Não é possível criar uma pasta."<<endl;
-        return 3;
-    }
-
-    extraiRecursivo(sarFile, "PastaTeste");
+    int status = extraiRecursivo(sarFile, ".");
 
     sarFile.close();
+
+    return status;
 }
 
 int extraiRecursivo(ifstream& sarFile, string pathPai)
@@ -160,8 +180,7 @@ int extraiRecursivo(ifstream& sarFile, string pathPai)
 
     if (dirStatus == -1)
     {
-        cout<<"Não é possível criar uma pasta."<<endl;
-        return 3;
+        return 4;
     }
 
     for(int i = 0; i < dirAtual.getNFilhos(); i++)
@@ -172,7 +191,10 @@ int extraiRecursivo(ifstream& sarFile, string pathPai)
 
         if(tipoFilho == 'D')
         {
-            extraiRecursivo(sarFile, pathCorrente);
+            if(extraiRecursivo(sarFile, pathCorrente) == 4)
+            {
+                return 4;
+            }
         }
         else
         {
@@ -180,11 +202,12 @@ int extraiRecursivo(ifstream& sarFile, string pathPai)
             novoArquivo.load(sarFile, pathCorrente);
         }
     }
+
+    return 0;
 }
 
 int listar(char* nomeArquivo)
 {
-    cout<<"Entrou Listar"<<endl;
     ifstream sarFile;
     sarFile.open(nomeArquivo, ios::binary);
 
@@ -196,8 +219,7 @@ int listar(char* nomeArquivo)
 
     if(head.getExtensao().compare(".sar") != 0 || head.getStatus() == 1)
     {
-        cout<<"Arquivo inconsistente."<<endl;
-        return 3;
+        return 2; // Não é um arquivo .sar ou é inconsistente
     }
 
     char tipoAtual;
@@ -205,21 +227,24 @@ int listar(char* nomeArquivo)
 
     listarRecursivo(sarFile, 0);
 
-
+    return 0;
 }
 
 void listarRecursivo(ifstream& file, int nivel)
 {
-    cout<<"Entrou em ListarRecursivo"<<endl;
-    int i;
-
     Diretorio dirAtual;
     dirAtual.load(file);
 
-    for(i = 0; i<=nivel; i++)
+    if(dirAtual.getNFilhos() < 0)
+        return;
+
+    for(int i = 0; i<=nivel; i++)
         cout<<"-";
 
     cout<<dirAtual.getNome()<<"/"<<endl;
+
+    if(file.eof())
+        return;
 
     for(int i = 0; i < dirAtual.getNFilhos(); i++)
     {
@@ -229,22 +254,34 @@ void listarRecursivo(ifstream& file, int nivel)
 
         if(tipoFilho == 'D')
         {
-            listarRecursivo(file, nivel++);
+            listarRecursivo(file, nivel+1);
         }
         else
         {
             Arquivo novoArquivo;
             novoArquivo.loadInfo(file);
+
             for(i = 0; i<=nivel+1; i++)
                 cout<<"-";
 
             cout<<novoArquivo.getNome()<<endl;
         }
     }
-
 }
 
 void info()
 {
-    cout<<"[Descrição do programa]"<<endl;
+    cout<<"NAME \n\tsar - cria e extrai uma estrutura de diretórios em um arquivo"<<endl;
+    cout<<"SYNOPSIS \n\
+     \tsar -c diretório\n\
+     \tsar [-e|-l] arquivo_sar"<<endl;
+    cout<<"DESCRIPTION\n\t-c diretório: Arquiva um diretorio.\n\
+     \t-e arquivo_sar: Extração de arquivos .sar.\n\
+     \t-l arquivo_sar: Listagem de arquivo .sar."<<endl;
+    cout<<"RETURN CODES\n\
+     \t0: Execução bem sucedida\n\
+     \t1: O argumento passado na criação não é um diretório\n\
+     \t2: O argumento passado na listagem ou extração não é um arquivo .sar válido\n\
+     \t3: Nao é possível criar um diretório\n\
+     \t4: Descrição inválida"<<endl;
 }

@@ -37,11 +37,12 @@
 		<Unit filename="include/Arquivo.h" />
 		<Unit filename="include/Diretorio.h" />
 		<Unit filename="include/Header.h" />
+		<Unit filename="include/sar.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Arquivo.cpp" />
 		<Unit filename="src/Diretorio.cpp" />
 		<Unit filename="src/Header.cpp" />
-		<Unit filename="src/leDir.cpp" />
+		<Unit filename="src/sar.cpp" />
 		<Extensions>
 			<code_completion />
 			<debugger />

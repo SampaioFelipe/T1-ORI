@@ -16,7 +16,6 @@ void Arquivo::save(ofstream& fileDestino, ifstream& fileOrigem)
     tamConteudo = fileOrigem.tellg();
     fileDestino.write(reinterpret_cast<const char *>(&this->tamConteudo), sizeof(this->tamConteudo));
 
-    cout<<"Tam: "<<this->tamConteudo<<endl;
     fileOrigem.seekg(0);
 
     while(!fileOrigem.eof())
@@ -27,12 +26,9 @@ void Arquivo::save(ofstream& fileDestino, ifstream& fileOrigem)
 void Arquivo::load(ifstream& file, string pathPai)
 {
     file.read(reinterpret_cast<char*>(&this->tamNome), sizeof(this->tamNome));
-    cout<<this->tamNome<<endl;
     this->nome = new char[this->tamNome];
     file.read(this->nome, this->tamNome);
-    cout<<this->nome<<endl;
     file.read(reinterpret_cast<char*>(&this->tamConteudo), sizeof(this->tamConteudo));
-    cout<<this->tamConteudo<<endl;
 
     ofstream novoArquivo;
     novoArquivo.open((pathPai + "/" + this->nome).c_str(), ios::binary);
@@ -50,14 +46,11 @@ void Arquivo::load(ifstream& file, string pathPai)
 void Arquivo::loadInfo(ifstream& file)
 {
     file.read(reinterpret_cast<char*>(&this->tamNome), sizeof(this->tamNome));
-    cout<<this->tamNome<<endl;
     this->nome = new char[this->tamNome];
     file.read(this->nome, this->tamNome);
-    cout<<this->nome<<endl;
     file.read(reinterpret_cast<char*>(&this->tamConteudo), sizeof(this->tamConteudo));
-    cout<<this->tamConteudo<<endl;
 
-    file.seekg(file.tellg() + this->tamConteudo - 1, ios::beg); // ??
+    file.seekg(file.tellg() + this->tamConteudo + 1, ios::beg); // ??
 }
 
 void Arquivo::setNome(string nome)
@@ -65,7 +58,6 @@ void Arquivo::setNome(string nome)
     this->nome = new char[nome.size()];
     strcpy(this->nome, nome.c_str());
     this->tamNome = nome.size()+1;
-    cout<<this->nome<<" "<<this->tamNome<<endl;
 }
 
 string Arquivo::getNome()
