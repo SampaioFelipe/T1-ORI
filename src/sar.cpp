@@ -45,7 +45,7 @@ int arquivar(char* dir)
     string nome = dirPath.back() + ".sar"; // Definimos o nome do arquivo que sera criado como nome.sar
 
     ofstream newFile;
-    newFile.open(nome.c_str(), ios::binary|ios::trunc); // Abrimos um nomo arquivo binario com o nome que definimos anteriormente
+    newFile.open(nome.c_str(), ios::binary|ios::trunc); // Abrimos um novo arquivo binario com o nome que definimos anteriormente
 
     Header head; // Criacao de um novo cabecalho
     head.save(newFile); // Salva o novo cabecalho no arquivo
