@@ -1,3 +1,13 @@
+/*
+
+Pré-Condição: Um arquivo já existente em algum diretório.
+
+Pós-Condição: Cria um cabeçalho para esse arquivo. Possui as funções de salvar o cabeçalho do arquivo, carregar um cabeçalho já existente
+com informações, retornar o status do cabeçalho atual, mudar o status do cabeçalho e por fim pode obter a extensão de um cabeçalho
+já criado.
+
+*/
+
 #ifndef HEADER_H
 #define HEADER_H
 #include <fstream>
