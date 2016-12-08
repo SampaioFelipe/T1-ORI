@@ -1,3 +1,12 @@
+/*
+
+Pré-Condição: Existência ou não de um diretório.
+
+Pós-Condição: Criação de um diretório para armazenar arquivos. Definir o nome para o diretório criado, e a quantidade de filhos que esse
+diretório terá. Além disso, pode carregar um diretório já existente.
+
+*/
+
 #ifndef DIRETORIO_H
 #define DIRETORIO_H
 
