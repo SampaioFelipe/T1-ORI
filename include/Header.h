@@ -1,5 +1,6 @@
 #ifndef HEADER_H
 #define HEADER_H
+
 #include <fstream>
 #include <dirent.h>
 
@@ -9,15 +10,15 @@ using namespace std;
  Classe: Header
 
  Descricao: Contem as informacoes de cabecalho do arquivo:
-    Extensao: Tipo do arquivo, neste caso ".sar";
-    Status: Situacao de consistencia do arquivo;
+    Extensao - Tipo do arquivo, neste caso ".sar";
+    Status - Situacao de consistencia do arquivo;
 */
 class Header
 {
 private:
     char extensao[5];
 
-    //Status é 1 se o arquivo nao e consistente, ou seja, ouve uma falha durante a criacao do arquivo ou 0 caso contrario
+    //Status é 1 se o arquivo nao e consistente, ou seja, ouve uma falha durante a criacao do arquivo, ou 0 caso contrario.
     int status;
 public:
     /*
