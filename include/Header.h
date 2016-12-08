@@ -25,16 +25,8 @@ using namespace std;
 */
 class Header
 {
-private:
-    char extensao[5];
-
-    //Status é 1 se o arquivo nao e consistente, ou seja, ouve uma falha durante a criacao do arquivo, ou 0 caso contrario.
-    int status;
 public:
-    /*
-        Construtor: Header
-        Descricao: Inicializa a classe Header
-    */
+
     Header();
     /*
         Método: save
@@ -54,7 +46,7 @@ public:
         Método: getStatus
         Descrição: Retorna o atual status do cabecalho
         Entrada: -
-        Saida: Inteiro que representa o status
+        Saida: Inteiro que representa o status do cabecalho
     */
     int getStatus();
     /*
@@ -66,11 +58,16 @@ public:
     string getExtensao();
     /*
         Método: changeStatus
-        Descrição: Salva as informacoes do cabecalho no arquivo passado como parametro
-        Entrada: Referencia para um arquivo .sar
-        Saida: O arquivo passado contem um novo cabecalho
+        Descrição: Muda os status do cabecalho
+        Entrada: -
+        Saida: O atribuito status se torna 0 se antes era 1 e vice-versa
     */
     void changeStatus();
+
+private:
+    char extensao[5];
+    int status; //Status é 1 se o arquivo nao e consistente, ou seja, ouve uma falha durante a criacao do arquivo, ou 0 caso contrario.
+
 };
 
 #endif // HEADER_H

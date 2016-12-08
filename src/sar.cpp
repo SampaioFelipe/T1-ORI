@@ -97,7 +97,7 @@ int arquivaRecursivo(string pai, string nomeDir, ofstream& file)
 
         if(ptrEnt->d_type == DT_REG) // Se o filho for do tipo Arquivo Regular
         {
-            contador++; // incrementamos o contador de filhos
+            contador++; // Incrementamos o contador de filhos
             nomeArquivos.push_back(string(ptrEnt->d_name)); // Guardamos o nome do arquivo filho
         }
 
@@ -184,9 +184,9 @@ int extraiRecursivo(ifstream& sarFile, string pathPai)
 
     int dirStatus = mkdir(pathCorrente.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH); // Cria o diretorio no caminho especificado em modo de permissao total
 
-    if (dirStatus == -1) // Se nao foi possivel criar o diretorio, retorna o erro
+    if (dirStatus == -1) // Se nao foi possivel criar o diretorio
     {
-        return 4;
+        return 3;
     }
 
     for(int i = 0; i < dirAtual.getNFilhos(); i++) // Para cada filho do diretorio (que esta guardado no objeto dirAtual)
@@ -199,7 +199,7 @@ int extraiRecursivo(ifstream& sarFile, string pathPai)
         {
             if(extraiRecursivo(sarFile, pathCorrente) == 4) // se a operacao nao ocorreu com sucesso retorna imediatamente o erro
             {
-                return 4;
+                return 3;
             }
         }
         else // Se for arquivo
@@ -249,7 +249,7 @@ void listarRecursivo(ifstream& file, int nivel)
 
     cout<<dirAtual.getNome()<<"/"<<endl;
 
-    for(int i = 0; i <= dirAtual.getNFilhos(); i++) // Le todos os filhos e lista
+    for(int i = 0; i < dirAtual.getNFilhos(); i++) // Le todos os filhos e lista
     {
         char tipoFilho;
 
@@ -259,15 +259,20 @@ void listarRecursivo(ifstream& file, int nivel)
         {
             listarRecursivo(file, nivel+1);
         }
-        else
+        else if(tipoFilho == 'F')
         {
             Arquivo novoArquivo;
             novoArquivo.loadInfo(file);
 
-            for(i = 0; i<=nivel+1; i++)
+            for(int j = 0; j<=nivel+1; j++)
                 cout<<"-";
 
             cout<<novoArquivo.getNome()<<endl;
+
+            if(file.eof())
+            {
+                return;
+            }
         }
     }
 }
