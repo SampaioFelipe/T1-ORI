@@ -5,23 +5,23 @@
 1481152448 source:/home/felipe/Documents/git/T1_ORI/SAR/src/Header.cpp
 	"Header.h"
 
-1481151442 /home/felipe/Documents/git/T1_ORI/SAR/include/Header.h
+1481158949 /home/felipe/Documents/git/T1_ORI/SAR/include/Header.h
 	<fstream>
 	<dirent.h>
 
 1481153296 source:/home/felipe/Documents/git/T1_ORI/SAR/src/Diretorio.cpp
 	"Diretorio.h"
 
-1481131958 /home/felipe/Documents/git/T1_ORI/SAR/include/Diretorio.h
+1481158949 /home/felipe/Documents/git/T1_ORI/SAR/include/Diretorio.h
 	<fstream>
 	<dirent.h>
 	<iostream>
 	<string.h>
 
-1481154503 source:/home/felipe/Documents/git/T1_ORI/SAR/src/Arquivo.cpp
+1481230116 source:/home/felipe/Documents/git/T1_ORI/SAR/src/Arquivo.cpp
 	"Arquivo.h"
 
-1480823260 /home/felipe/Documents/git/T1_ORI/SAR/include/Arquivo.h
+1481231430 /home/felipe/Documents/git/T1_ORI/SAR/include/Arquivo.h
 	<fstream>
 	<dirent.h>
 	<iostream>
@@ -46,6 +46,6 @@
 	"Diretorio.h"
 	"Arquivo.h"
 
-1481151315 source:/home/felipe/Documents/git/T1_ORI/SAR/src/sar.cpp
+1481231073 source:/home/felipe/Documents/git/T1_ORI/SAR/src/sar.cpp
 	"sar.h"
 

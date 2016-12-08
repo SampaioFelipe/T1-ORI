@@ -30,7 +30,7 @@ public:
 private:
     int tamNome;
     char* nome;
-    int tamConteudo;
+    unsigned long long int tamConteudo;
 };
 
 #endif // ARQUIVO_H

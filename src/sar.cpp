@@ -249,7 +249,7 @@ void listarRecursivo(ifstream& file, int nivel)
 
     cout<<dirAtual.getNome()<<"/"<<endl;
 
-    for(int i = 0; i < dirAtual.getNFilhos(); i++) // Le todos os filhos e lista
+    for(int i = 0; i <= dirAtual.getNFilhos(); i++) // Le todos os filhos e lista
     {
         char tipoFilho;
 
