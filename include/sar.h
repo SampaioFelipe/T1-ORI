@@ -1,3 +1,12 @@
+/*
+
+Pré-Condição: Existência de um ou mais arquivos presentes nos diretórios existentes.
+
+Pós-Condição: Permite Arquivar  arquivos, direta ou recursivamente. Permite extrair  arquivos, direta ou recursivamente bem como
+permite que seja feita uma listagem, direta ou recursivamente de arquivos.
+
+*/
+
 #ifndef SAR_H
 #define SAR_H
 

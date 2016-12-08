@@ -1,5 +1,6 @@
 /*
-* Nome:
+* Nome: SAR
+* Autores: Felipe Sampaio, Pedro Henrique Mauad, Pedro Henrique Migliatti
 */
 
 #include "sar.h"
